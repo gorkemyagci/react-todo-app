@@ -9,6 +9,7 @@ function App() {
       <div className='todos mt-5'>
       <Todos/>
       </div>
+      <p id='err'></p>
     </div>
   );
 }

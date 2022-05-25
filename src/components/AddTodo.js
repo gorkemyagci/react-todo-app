@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import TodoConsumer from './TodoContext';
+import Todos from './Todos';
 var uniqid = require('uniqid');
 
 
@@ -24,6 +26,14 @@ class AddTodo extends Component {
         }
         dispatch({type:"ADD_TODO",payload:newTodo});
         document.getElementById('todo').value = "";
+        axios.post('http://localhost:3004/todos',newTodo)
+        .then(response => {
+            if(response.status === 200 || response.status === 201){
+              alert("Card successfully added");
+            }else{
+                alert("Card not added")
+            }
+        })
     }
 
   render() {

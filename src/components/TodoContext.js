@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 const TodoContext = React.createContext();
 
@@ -24,6 +25,18 @@ export class TodoProvider extends Component {
             this.setState(state => reducer(state,action));
         }
     }
+
+    componentDidMount = async () => {
+       const response = await axios.get('http://localhost:3004/todos');
+       if(response.status === 200){
+           this.setState({
+               todos: response.data
+           })
+       }else{
+         document.getElementById('err').innerHTML = "KULLANICI BULUNAMADI..."
+       }
+    }
+    
   render() {
     return (
       <TodoContext.Provider value={this.state}>
