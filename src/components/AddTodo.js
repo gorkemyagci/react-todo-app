@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import TodoConsumer from './TodoContext';
 import Todos from './Todos';
 var uniqid = require('uniqid');
+import Todo from './Todo';
 
 
 class AddTodo extends Component {
@@ -22,7 +23,7 @@ class AddTodo extends Component {
         const {todo} = this.state;
         const newTodo = {
             id:uniqid(),
-            todo:todo
+            todo:todo,
         }
         dispatch({type:"ADD_TODO",payload:newTodo});
         document.getElementById('todo').value = "";
@@ -36,6 +37,7 @@ class AddTodo extends Component {
         })
     }
 
+    
   render() {
       const {todo} = this.props;
     return (
@@ -60,7 +62,11 @@ class AddTodo extends Component {
                                 onChange={this.changeInput}
                                 />
                             </div>
-                            <button type='submit' className='btn btn-primary mt-2'>Add</button>
+                            <div>
+                            <button id='edit' onClick={Todo.prototype.updateTodo} className='btn btn-success d-none mt-2'>Edit</button>
+                            <button id='submit' type='submit' className='btn btn-primary mt-2 mr-3'>Add</button>
+                            <button id='close' className='btn btn-danger d-inline mt-2 ml-3 d-none' style={{marginLeft:"10px"}}>Close</button>
+                            </div>
                         </form>
                       </div>
                     )

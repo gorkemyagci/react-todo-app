@@ -4,7 +4,9 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import TodoConsumer from './TodoContext';
 import { FiEdit } from 'react-icons/fi';
 
+
 class Todo extends Component {
+
     deleteTodo = (dispatch) => {
         const {id} = this.props;
         // Consumer
@@ -18,6 +20,27 @@ class Todo extends Component {
             }
         })
     }
+    editTodo = (e) => {
+        const item = e.target.parentNode.parentNode;
+        const parent = item.parentNode;
+        const items = document.querySelectorAll('#TodoItem');
+        const editBtn = document.querySelector('#edit');
+        const addBtn = document.querySelector('#submit');
+        const closeBtn = document.querySelector('#close');
+
+        for(let i=0;i<items.length;i++){
+            items[i].classList.remove('bg-warning');
+        }
+        if(parent.classList.contains('card')){
+
+            parent.classList.add('bg-warning');
+            editBtn.classList.remove('d-none');
+            addBtn.classList.add('d-none');
+            closeBtn.classList.remove('d-none');
+        }
+    }
+
+
   render() {
       const {todo} = this.props;
     return (
@@ -26,11 +49,13 @@ class Todo extends Component {
                 value => {
                     const {dispatch} = value;
                     return(
-                        <div className='card my-3'>
-                        <div className='card-header d-flex justify-content-between align-items-center'>
-                            <p>{todo}</p>
+                        <div className="card my-3" id="TodoItem">
+                        <div id='header' className='card-header d-flex justify-content-between align-items-center'>
                             <div>
-                            <FiEdit size={24}/>
+                            <p>{todo}</p>
+                            </div>
+                            <div>
+                            <FiEdit size={24} onClick={this.editTodo} className="editIcon"/>
                             <BsFillTrashFill size={24} style={{cursor:"pointer"}} onClick={this.deleteTodo.bind(this,dispatch)}/>
                             </div>
                         </div>
