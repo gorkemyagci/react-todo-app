@@ -63,9 +63,7 @@ class AddTodo extends Component {
                                 />
                             </div>
                             <div>
-                            <button id='edit' onClick={Todo.prototype.updateTodo} className='btn btn-success d-none mt-2'>Edit</button>
                             <button id='submit' type='submit' className='btn btn-primary mt-2 mr-3'>Add</button>
-                            <button id='close' className='btn btn-danger d-inline mt-2 ml-3 d-none' style={{marginLeft:"10px"}}>Close</button>
                             </div>
                         </form>
                       </div>

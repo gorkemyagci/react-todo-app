@@ -20,26 +20,6 @@ class Todo extends Component {
             }
         })
     }
-    editTodo = (e) => {
-        const item = e.target.parentNode.parentNode;
-        const parent = item.parentNode;
-        const items = document.querySelectorAll('#TodoItem');
-        const editBtn = document.querySelector('#edit');
-        const addBtn = document.querySelector('#submit');
-        const closeBtn = document.querySelector('#close');
-
-        for(let i=0;i<items.length;i++){
-            items[i].classList.remove('bg-warning');
-        }
-        if(parent.classList.contains('card')){
-
-            parent.classList.add('bg-warning');
-            editBtn.classList.remove('d-none');
-            addBtn.classList.add('d-none');
-            closeBtn.classList.remove('d-none');
-        }
-    }
-
 
   render() {
       const {todo} = this.props;
